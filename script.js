@@ -35,6 +35,7 @@ function add(valor) {
   }
 
   display.value += valor;
+  atualizarScroll();
 }
 
 // ================== LIMPAR ==================
@@ -46,6 +47,7 @@ function limpar() {
 // ================== APAGAR ==================
 function apagar() {
   display.value = display.value.slice(0, -1);
+  atualizarScroll();
 }
 
 // ================== CALCULAR ==================
@@ -55,9 +57,8 @@ function calcular() {
 
     // ❌ não pode terminar com operador
     if (/[+\-*/]$/.test(contaOriginal)) {
-      display.value = "Erro";
-      return;
-    }
+  contaOriginal = contaOriginal.slice(0, -1);
+}
 
     let numeros = contaOriginal.split(/[\+\-\*\/]/).map(Number);
     let operadores = contaOriginal.match(/[\+\-\*\/]/g);
@@ -96,10 +97,14 @@ function calcular() {
       } else {
         resultado -= numeros[i + 1];
       }
-      novoCalculo = true;
+    
+    }
+    display.value = resultado;
+    atualizarScroll();
+
+novoCalculo = true;
 
 salvarHistorico(contaOriginal, resultado);
-    }
 
     display.value = resultado;
 
@@ -108,9 +113,12 @@ salvarHistorico(contaOriginal, resultado);
   }
 }
 
-// ================== HISTÓRICO ==================
 function salvarHistorico(conta, resultado) {
-  historico.push(`${conta} = ${resultado}`);
+  let contaFormatada = conta
+    .replaceAll("*", "×")
+    .replaceAll("/", "÷");
+
+  historico.push(`${contaFormatada} = ${resultado}`);
   atualizarHistorico();
 }
 
@@ -150,3 +158,6 @@ document.addEventListener("keydown", function (event) {
 
   if (tecla === "Escape") limpar();
 });
+function atualizarScroll() {
+  display.scrollLeft = display.scrollWidth;
+}

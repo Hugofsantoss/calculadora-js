@@ -148,9 +148,9 @@ button:focus {
   }
 
   #display {
-    height: 70px;
-    font-size: 32px;
-  }
+  overflow-x: auto;
+  white-space: nowrap;
+}
 
   .botoes {
     grid-template-columns: repeat(4, 1fr);
