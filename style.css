@@ -1,0 +1,174 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #1e1e2f, #121212);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Layout geral */
+.container {
+  display: flex;
+  gap: 30px;
+}
+
+/* Calculadora */
+.calculadora {
+  background: #1c1c28;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Display */
+#display {
+  width: 100%;
+  height: 60px;
+  font-size: 28px;
+  text-align: right;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 10px;
+  background: #111;
+  color: #fff;
+}
+
+/* Botões */
+.botoes {
+  display: grid;
+  grid-template-columns: repeat(4, 70px);
+  gap: 10px;
+}
+
+button {
+  height: 60px;
+  font-size: 18px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #2a2a3d;
+  color: #fff;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #3a3a55;
+  transform: scale(1.05);
+}
+
+/* Botões operadores */
+.op {
+  background: #ff9500;
+}
+
+.op:hover {
+  background: #ffad33;
+}
+
+/* Botão igual */
+.igual {
+  background: #00c853;
+  grid-row: span 2;
+}
+
+.igual:hover {
+  background: #00e676;
+}
+
+/* Botão zero maior */
+.zero {
+  grid-column: span 2;
+}
+
+/* Histórico */
+.historico-box {
+  background: #1c1c28;
+  padding: 20px;
+  border-radius: 20px;
+  width: 200px;
+  color: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.historico-box h3 {
+  margin-bottom: 10px;
+}
+
+#historico {
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+#historico li {
+  margin-bottom: 5px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.historico-box button {
+  width: 100%;
+  background: #ff3b30;
+}
+
+.historico-box button:hover {
+  background: #ff5c52;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 600px) {
+
+  body {
+    padding: 10px;
+    align-items: flex-start;
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .calculadora {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  #display {
+    height: 70px;
+    font-size: 32px;
+  }
+
+  .botoes {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  button {
+    height: 65px;
+    font-size: 20px;
+  }
+
+  .historico-box {
+    width: 100%;
+    max-width: 350px;
+    margin-top: 15px;
+  }
+
+  #historico {
+    max-height: 150px;
+  }
+}
